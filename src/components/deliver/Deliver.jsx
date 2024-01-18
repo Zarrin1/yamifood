@@ -10,7 +10,7 @@ const Deliver = () => {
         flexDirection: "column",
         alignItems: "center",
         justifyContent: "center",
-        height: "100vh", // Занимаем всю высоту видимой области
+        height: "100vh",
       }}
     >
       <Typography sx={{ fontSize: 30, fontWeight: 700, textAlign: "center" }}>
