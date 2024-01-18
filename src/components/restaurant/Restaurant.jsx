@@ -14,7 +14,7 @@ const useStyles = makeStyles({
     flexWrap: "wrap",
     justifyContent: "center",
     position: "relative",
-    background: "#F5F4F2"
+    background: "#F5F4F2",
   },
 });
 const Restaurant = () => {
@@ -26,7 +26,7 @@ const Restaurant = () => {
         <ArrowBack
           sx={{ position: "absolute", top: 30, left: 10 }}
           onClick={() => {
-            navigate('/');
+            navigate("/");
           }}
         />
         <Box>

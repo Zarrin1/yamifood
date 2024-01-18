@@ -25,13 +25,14 @@ const useStyles = makeStyles({
   },
   ranks: {
     display: "flex",
-    alignItems: "flex-start",
-    gap: "24px",
+    flexWrap: "wrap",
+    justifyContent: "space-between",
   },
   cartoch: {
     width: "250px",
-    borderRadius: "5px",
+    borderRadius: "15px",
     alignItems: "center",
+    marginBottom: "16px",
   },
   addCart: {
     marginTop: "14px !important",
