@@ -1,16 +1,11 @@
-import {
-  Box,
-  Button,
-  List,
-  ListItem,
-  TextField,
-  Typography,
-} from "@mui/material";
+import React from "react";
+import { Box, Button, List, ListItem, TextField } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { deleteItemsAll } from "../../store/features/cart/cartSlice";
+import { ArrowBack } from "@mui/icons-material";
 
 const useStyles = makeStyles({});
 
@@ -43,60 +38,62 @@ const Adress = () => {
   };
 
   return (
-    <>
+    <Box className={classes.container} sx={{ position: "relative" }}>
       <Box className={classes.banner}>
-        <Box
-          sx={{ width: "100%" }}
-          component="img"
+        <img
           src="../../src/assets/bellaBan.png"
-          className={classes.imgRes}
+          alt="Banner"
+          style={{ width: "100%", height: "auto" }}
         />
       </Box>
+      <ArrowBack
+        sx={{ position: "absolute", top: 30, left: 10, color: "#fff" }}
+        onClick={() => {
+          navigate(-1);
+        }}
+      />
       <Box
-        className={classes.container}
+        className={classes.main}
         sx={{
-          display: "flex",
-          justifyContent: "space-between",
-          marginTop: "20px",
-          padding: "0px 50px",
+          textAlign: "center", // Center the content horizontally
         }}
       >
-        <Box className={classes.main} sx={{ padding: 0, margin: 0 }}>
+        <Box sx={{ margin: "0 auto", maxWidth: "400px" }}>
           <List className={classes.lists}>
-            <ListItem sx={{ padding: 0 }}>
+            <ListItem>
               <TextField
                 id="name"
                 label="Имя"
                 variant="standard"
                 value={name}
                 onChange={handleInputChange}
-                sx={{ width: "500px", marginBottom: 2, fontSize: 20 }}
+                sx={{ width: "100%", marginBottom: 2, fontSize: 20 }}
               />
             </ListItem>
 
-            <ListItem sx={{ padding: 0 }}>
+            <ListItem>
               <TextField
                 id="phoneNumber"
                 label="Номер"
                 variant="standard"
                 value={phoneNumber}
                 onChange={handleInputChange}
-                sx={{ width: "500px", marginBottom: 2 }}
+                sx={{ width: "100%", marginBottom: 2 }}
                 inputProps={{
                   inputMode: "numeric",
-                  pattern: "[0-9]*", // Разрешаем только цифры
+                  pattern: "[0-9]*",
                 }}
               />
             </ListItem>
 
-            <ListItem sx={{ padding: 0 }}>
+            <ListItem>
               <TextField
                 id="adressStr"
                 label="Адресс"
                 variant="standard"
                 value={adressStr}
                 onChange={handleInputChange}
-                sx={{ width: "500px", marginBottom: 2 }}
+                sx={{ width: "100%", marginBottom: 2 }}
               />
             </ListItem>
 
@@ -116,43 +113,8 @@ const Adress = () => {
             </Button>
           </List>
         </Box>
-
-        <Box
-          className={classes.check}
-          sx={{
-            background: "#FDC243",
-            width: 350,
-            borderRadius: 5,
-            padding: 2,
-            margin: 0,
-          }}
-        >
-          <List>
-            <ListItem
-              sx={{
-                display: "flex",
-                justifyContent: "space-between",
-              }}
-            >
-              <Typography sx={{ padding: 0, fontSize: 20 }}>Pizza</Typography>
-              <Typography sx={{ padding: 0, fontSize: 20 }}>2 TJS</Typography>
-            </ListItem>
-
-            <ListItem
-              sx={{
-                display: "flex",
-                justifyContent: "space-between",
-                borderTop: "2px solid #fff",
-                marginTop: "20px",
-              }}
-            >
-              <Typography sx={{ padding: 0, fontSize: 18 }}>Итоги</Typography>
-              <Typography sx={{ padding: 0, fontSize: 20 }}>2 TJS</Typography>
-            </ListItem>
-          </List>
-        </Box>
       </Box>
-    </>
+    </Box>
   );
 };
 

@@ -1,122 +1,58 @@
-import { Box, Button } from "@mui/material";
+import React, { useState } from "react";
+import { Tabs, Tab, Box } from "@mui/material";
 import { makeStyles } from "@mui/styles";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  selectActiveTab,
+  setActiveTab,
+} from "../../store/features/type/TypeSlice";
 
 const useStyles = makeStyles({
   types: {
-    display: "flex",
     background: "#F5F4F2",
-    alignItems: "center",
     borderRadius: "15px",
     padding: "10px",
     marginTop: "16px",
   },
-  butun: {
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
-    padding: "8px",
-    borderRadius: "15px",
-    fontSize: "16px",
-    color: "red",
-    fontWeight: "400",
-    cursor: "pointer",
-    "&:hover": {
-      backgroundColor: "#ddd",
-    },
-    "&:not(:last-child)": {
-      marginRight: "8px",
-    },
-    "&.active": {
-      backgroundColor: "#3f51b5",
-      color: "#fff",
-    },
+  activeTab: {
+    backgroundColor: "#fff !important",
+    color: "#000 !important",
+    borderBottom: "yellow !important",
+    borderRadius: "10px !important",
   },
 });
 
 const Types = () => {
   const classes = useStyles();
+  const dispatch = useDispatch();
+  const activeTab = useSelector(selectActiveTab);
+
+  const handleTabChange = (event, newValue) => {
+    dispatch(setActiveTab(newValue));
+  };
 
   return (
     <Box className={classes.types}>
-      <Button
-        sx={{
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-          padding: "10px",
-          borderRadius: "15px",
-          fontSize: "14px",
-          color: "black",
-          fontWeight: "400",
-          cursor: "pointer",
-        }}
-      >
-        Все
-      </Button>
-      <Button
-        sx={{
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-          padding: "10px",
-          borderRadius: "15px",
-          fontSize: "14px",
-          color: "black",
-          fontWeight: "400",
-          cursor: "pointer",
-        }}
-        className={classes.butun}
-      >
-        Топ
-      </Button>
-      <Button
-        sx={{
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-          padding: "10px",
-          borderRadius: "15px",
-          fontSize: "14px",
-          color: "black",
-          fontWeight: "400",
-          cursor: "pointer",
-        }}
-        className={classes.btns}
-      >
-        Национальная
-      </Button>
-      <Button
-        sx={{
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-          padding: "10px",
-          borderRadius: "15px",
-          fontSize: "14px",
-          color: "black",
-          fontWeight: "400",
-          cursor: "pointer",
-        }}
-        className={classes.btns}
-      >
-        Суши
-      </Button>
-      <Button
-        sx={{
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-          padding: "10px",
-          borderRadius: "15px",
-          fontSize: "14px",
-          color: "black",
-          fontWeight: "400",
-          cursor: "pointer",
-        }}
-        className={classes.btns}
-      >
-        Бургеры
-      </Button>
+      <Tabs value={activeTab} onChange={handleTabChange}>
+        <Tab label="Все" className={activeTab === 0 ? classes.activeTab : ""} />
+        <Tab label="Топ" className={activeTab === 1 ? classes.activeTab : ""} />
+        <Tab
+          label="Национальная"
+          className={activeTab === 2 ? classes.activeTab : ""}
+        />
+        <Tab
+          label="Суши"
+          className={activeTab === 3 ? classes.activeTab : ""}
+        />
+        <Tab
+          label="Fast-food"
+          className={activeTab === 4 ? classes.activeTab : ""}
+        />
+        <Tab
+          label="Турецкая"
+          className={activeTab === 5 ? classes.activeTab : ""}
+        />
+      </Tabs>
     </Box>
   );
 };
